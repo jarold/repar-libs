@@ -1,19 +1,38 @@
 import React from 'react';
 
-class CoreComp extends React.Component {
+class Competencies extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      'Communication': 0,
+      'Decision Making': 0,
+      'Leadership': 0,
+      'Principles of Community': 0,
+      'Problem Solving': 0,
+      'Quality Improvement': 0,
+      'Service Focus': 0,
+      'Stewardship and Managing Resources': 0,
+      'Strategic Planning': 0,
+      'Teamwork': 0,
+      'Managing People': 0,
+    }
+  }
+
   render() {
-    const coreCompetencies = ['Communication', 'Decision Making', 'Leadership', 'Principles of Community', 'Problem Solving', 'Quality Improvement', 'Service Focus', 'Stewardship and Managing Resources', 'Strategic Planning', 'Teamwork', 'Managing People'];
+    const competencies = this.state;
+    const keys = Object.keys(competencies);
 
     return (
       <div>
-        <h2 className="title is-4">Core Competencies</h2>
+        <h1 className="title is-6">Core Competencies</h1>
 
         <ul className="unstyled-list">
-          {coreCompetencies.map((comp) =>
-            <li>
-              <span className="button is-primary is-small is-outlined">+</span>            
-              &nbsp;&nbsp;{comp}&nbsp;&nbsp;
-              <span className="tag is-rounded">0</span>
+          {keys.map((key, index) =>
+            <li key={key}>
+              <span id={key} className="button is-primary is-small is-outlined" onClick={this.props.addEntry}>+</span>            
+              &nbsp;&nbsp;{key}&nbsp;&nbsp;
+              <span className="tag is-rounded">{competencies[key]}</span>
             </li>
           )}
         </ul>
@@ -22,4 +41,4 @@ class CoreComp extends React.Component {
   }
 }
 
-export default CoreComp;
+export default Competencies;
