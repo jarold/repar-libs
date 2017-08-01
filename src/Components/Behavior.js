@@ -1,1 +1,0 @@
-// During [context], I demonstrated [competency] by doing [behavior] with the effect of [effect].

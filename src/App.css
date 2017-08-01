@@ -1,5 +1,6 @@
 .App {
-
+  width: 80%;
+  margin: 0 auto;
 }
 
 .App-header {
@@ -8,8 +9,17 @@
   padding: 20px;
   color: white;
   text-align: center;
+  margin-bottom: 50px;
 }
 
 .App-intro {
   font-size: large;
+}
+
+.unstyled-list {
+  list-style: none;
+}
+
+li {
+  margin: 10px;
 }

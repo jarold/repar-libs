@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import madlibs from './madlibs.png';
 import './App.css';
-import Core from './Components/Core';
+import CoreComp from './Components/CoreComp';
+import Entry from './Components/Entry';
 
 class App extends Component {
   render() {
@@ -12,7 +13,15 @@ class App extends Component {
           <h2>reparLibs</h2>
         </div>
 
-        <CoreComp />
+        <div className="columns">
+          <div className="column is-one-quarter">
+            <CoreComp />
+          </div>
+          <div className="column">
+            <Entry competency={'Communication'} />
+          </div>
+        </div>
+
       </div>
     );
   }

@@ -1,20 +1,25 @@
 import React from 'react';
 
-class Core extends React.Component {
+class CoreComp extends React.Component {
   render() {
     const coreCompetencies = ['Communication', 'Decision Making', 'Leadership', 'Principles of Community', 'Problem Solving', 'Quality Improvement', 'Service Focus', 'Stewardship and Managing Resources', 'Strategic Planning', 'Teamwork', 'Managing People'];
-    // const competencyList = coreCompetencies.map((comp) => <li>{comp}</li>);
 
     return (
       <div>
-        <h2>Core Competencies</h2>
+        <h2 className="title is-4">Core Competencies</h2>
 
-        <ul>
-          {coreCompetencies.map((comp) => <li>{comp}</li>)}
+        <ul className="unstyled-list">
+          {coreCompetencies.map((comp) =>
+            <li>
+              <span className="button is-primary is-small is-outlined">+</span>            
+              &nbsp;&nbsp;{comp}&nbsp;&nbsp;
+              <span className="tag is-rounded">0</span>
+            </li>
+          )}
         </ul>
       </div>
     );
   }
 }
 
-export default Core;
+export default CoreComp;
