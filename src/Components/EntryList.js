@@ -4,7 +4,7 @@ import Entry from './Entry';
 const EntryList = (props) => {
   return (
     <div>
-      {props.entries.map(entry => <Entry entry={entry} />)}
+      {props.entries.map((entry, index) => <Entry key={index} entry={entry} />)}
     </div>
   )
 }
