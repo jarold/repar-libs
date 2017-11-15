@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CompetencyCounter = (props) => {
+const CompetencyCounter = props => {
   const competencies = props.competencies;
   const keys = Object.keys(competencies);
 
@@ -9,16 +9,17 @@ const CompetencyCounter = (props) => {
       <h1 className="title is-6">Core Competencies</h1>
 
       <ul className="unstyled-list">
-        {keys.map((key, index) =>
+        {keys.map((key, index) => (
           <li key={key}>
-            <span id={key} className="button is-primary is-small is-outlined" onClick={props.addEntry}>+</span>            
-            &nbsp;&nbsp;{key}&nbsp;&nbsp;
-            <span className="tag is-rounded">{competencies[key]}</span>
+            <div className="tags has-addons">
+              <span className="tag is-light">{key}</span>
+              <span className="tag is-light">{competencies[key]}</span>
+            </div>
           </li>
-        )}
+        ))}
       </ul>
     </div>
   );
-}
+};
 
 export default CompetencyCounter;
