@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Competencies = (props) => {
+const CompetencyCounter = (props) => {
   const competencies = props.competencies;
   const keys = Object.keys(competencies);
 
@@ -21,4 +21,4 @@ const Competencies = (props) => {
   );
 }
 
-export default Competencies;
+export default CompetencyCounter;

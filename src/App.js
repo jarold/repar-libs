@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import madlibs from './madlibs.png';
 import './App.css';
-import Competencies from './Components/Competencies';
+import CompetencyCounter from './Components/CompetencyCounter';
 import EntryList from './Components/EntryList';
 
 class App extends Component {
@@ -56,13 +55,12 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <img src={madlibs} alt="logo" />
           <h2 className="title is-4 has-text-white">reparLibs</h2>
         </div>
 
         <div className="columns">
           <div className="column is-one-quarter">
-            <Competencies competencies={this.state.competencies} addEntry={this.addEntry} />
+            <CompetencyCounter competencies={this.state.competencies} addEntry={this.addEntry} />
           </div>
           <div className="column">
             <EntryList entries={this.state.entries} />
