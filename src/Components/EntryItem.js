@@ -17,6 +17,7 @@ class EntryItem extends Component {
     this.updateDescription = this.updateDescription.bind(this);
     this.updateType = this.updateType.bind(this);
     this.updateComment = this.updateComment.bind(this);
+    this.deleteComment = this.deleteComment.bind(this);
   }
 
   toggleDropdown() {
@@ -56,6 +57,7 @@ class EntryItem extends Component {
 
     this.props.updateCount(event.target.innerHTML);
   }
+
   updateComment(e) {
     const [commentIndex, commentKey] = e.target.id.split('-');
     const comments = this.state.comments;
@@ -70,6 +72,21 @@ class EntryItem extends Component {
 
       return updatedComment;
     });
+
+    this.setState({
+      comments: updatedComments
+    });
+  }
+
+  deleteComment(e) {
+    debugger;
+    const deleteAtIndex = parseInt(e.target.parentNode.id.split('-')[1], 10);
+
+    const comments = this.state.comments;
+    const updatedComments = [
+      ...comments.slice(0, deleteAtIndex),
+      ...comments.slice(deleteAtIndex + 1)
+    ];
 
     this.setState({
       comments: updatedComments
@@ -125,8 +142,16 @@ class EntryItem extends Component {
         <CompetencySelector addComment={this.addComment} />
 
         {this.state.comments.map((comment, index) => (
-          <div className="notification">
-            <button className="delete"></button>
+          <div
+            className="notification"
+            key={'comment-' + index}
+            id={'comment-' + index}
+          >
+            <button
+              id={index + '-delete'}
+              className="delete"
+              onClick={this.deleteComment}
+            />
             In the area of <strong>{comment.competency}</strong> I{' '}
             <span
               id={index + '-behavioralIndicator'}
