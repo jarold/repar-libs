@@ -21,7 +21,7 @@ const CompetencySelector = props => {
       <p>Demonstrated Competencies</p>
       <div className="tags">
         {keys.map((key, index) => (
-          <span className="tag is-rounded" onClick={props.addComment}>
+          <span key={"tag"+index} className="tag is-rounded" onClick={props.addComment}>
             {key}
           </span>
         ))}
