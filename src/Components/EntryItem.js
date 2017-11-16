@@ -14,7 +14,7 @@ class EntryItem extends Component {
 
     this.toggleDropdown = this.toggleDropdown.bind(this);
     this.addComment = this.addComment.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.updateDescription = this.updateDescription.bind(this);
     this.updateType = this.updateType.bind(this);
     this.updateComment = this.updateComment.bind(this);
   }
@@ -125,7 +125,8 @@ class EntryItem extends Component {
         <CompetencySelector addComment={this.addComment} />
 
         {this.state.comments.map((comment, index) => (
-          <div>
+          <div className="notification">
+            <button className="delete"></button>
             In the area of <strong>{comment.competency}</strong> I{' '}
             <span
               id={index + '-behavioralIndicator'}

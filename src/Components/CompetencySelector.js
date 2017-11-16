@@ -17,7 +17,7 @@ const CompetencySelector = props => {
   const keys = Object.keys(competencies);
 
   return (
-    <div>
+    <div style={{ marginBottom: '1.5em'}}>
       <p>Demonstrated Competencies</p>
       <div className="tags">
         {keys.map((key, index) => (
