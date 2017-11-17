@@ -11,7 +11,7 @@ class App extends Component {
       entries: [
         {
           type: 'Select a type',
-          description: '[Description]',
+          description: '[Description]'
         }
       ],
       competencies: {
@@ -37,12 +37,12 @@ class App extends Component {
     const newEntry = {
       type: 'Select a type',
       description: 'Description'
-    }
+    };
 
-    const newEntries = [...this.state.entries, newEntry]
+    const newEntries = [...this.state.entries, newEntry];
 
     this.setState({
-      entries: newEntries,
+      entries: newEntries
     });
   }
 
@@ -55,10 +55,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <h2 className="title is-4">reparLibs</h2>
-        </div>
+        <nav className="navbar is-light">
+          <div className="navbar-brand">
+            <a className="navbar-item" href="/"><h1 className="title is-4">eparLibs</h1></a>
+          </div>
+        </nav>
 
+        <section className="section">
         <div className="columns">
           <div className="column is-one-quarter">
             <CompetencyCounter
@@ -71,9 +74,12 @@ class App extends Component {
               entries={this.state.entries}
               updateCount={this.updateCount}
             />
-            <button className="button is-fullwidth" onClick={this.addEntry}>Add Entry</button>
+            <button className="button is-fullwidth" onClick={this.addEntry}>
+              Add Entry
+            </button>
           </div>
         </div>
+        </section>
       </div>
     );
   }

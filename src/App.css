@@ -1,9 +1,9 @@
 .App {
-  width: 80%;
-  margin: 0 auto;
+  /* width: 80%;
+  margin: 0 auto; */
 }
 
-.App-header {
+/* .App-header {
   background-color: #F5F5F5;
   padding: 1em;
   margin-bottom: 2em;
@@ -11,7 +11,7 @@
 
 .App-intro {
   font-size: large;
-}
+} */
 
 .unstyled-list {
   list-style: none;
@@ -33,4 +33,8 @@ li {
   min-width: 5em;
   padding: .1em;
   margin: .1em;
+}
+
+.fixed {
+  position: fixed;
 }
