@@ -9,12 +9,12 @@
 - [ ] Actual login (CAS) and server-side saving of data
 - [ ] Ability to start a new SOA (while keeping old ones)
 - [ ] Ability to copy job functions from previous SOA to new one
-- [ ] Text entry fields should clear when you click into them (e.g., [Specific Example]).
+- [x] Text entry fields should clear when you click into them (e.g., [Specific Example]).
 - [ ] Selecting an existing behavioral indicator should bring up the selector to change it.
 - [ ] Ability to change competency and behavioral indicator for an entry
 - [ ] Ability to have more than one instance of a competency within a job function/achievement/goal
 - [ ] Make impact statement optional
-- [ ] Get rid of "Also, " at the start of subsequent statements.
+- [x] Get rid of "Also, " at the start of subsequent statements.
 - [ ] Guided mode that walks someone through copy-and-paste of job functions from PD and goals from previous year's EPAR would be helpful.
 - [ ] Guided mode to assist with copy-and-paste of information from EPARLibs to actual (crappy) EPAR app
 - [ ] Indicator of operational/mastery level for behavioral indicators

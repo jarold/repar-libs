@@ -4,11 +4,9 @@
 }
 
 .App-header {
-  background-color: #222;
-  padding: 20px;
-  color: white;
-  text-align: center;
-  margin-bottom: 50px;
+  background-color: #F5F5F5;
+  padding: 1em;
+  margin-bottom: 2em;
 }
 
 .App-intro {
@@ -26,4 +24,13 @@ li {
 
 .tags-select {
   margin-bottom: .5em;
+}
+
+.editable {
+  display: inline-block;
+  background-color: #E6E6E6;
+  text-align: center;
+  min-width: 5em;
+  padding: .1em;
+  margin: .1em;
 }

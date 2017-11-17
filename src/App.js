@@ -11,7 +11,7 @@ class App extends Component {
       entries: [
         {
           type: 'Select a type',
-          description: 'Description',
+          description: '[Description]',
         }
       ],
       competencies: {
@@ -56,7 +56,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <h2 className="title is-4 has-text-white">reparLibs</h2>
+          <h2 className="title is-4">reparLibs</h2>
         </div>
 
         <div className="columns">

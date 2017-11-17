@@ -13,7 +13,9 @@ class EntryItem extends Component {
     };
 
     this.toggleDropdown = this.toggleDropdown.bind(this);
+    this.clear = this.clear.bind(this);
     this.addComment = this.addComment.bind(this);
+    this.clearDescription = this.clearDescription.bind(this);
     this.updateDescription = this.updateDescription.bind(this);
     this.updateType = this.updateType.bind(this);
     this.updateComment = this.updateComment.bind(this);
@@ -26,12 +28,41 @@ class EntryItem extends Component {
     });
   }
 
+  clear(e) {
+    if (e.target.innerHTML.split('')[0] === '[') {
+      const [commentIndex, commentKey] = e.target.id.split('-');
+      const comments = this.state.comments;
+      const updatedComment = Object.assign({}, comments[commentIndex], {
+        [commentKey]: ' '
+      });
+
+      const updatedComments = comments.map((comment, index) => {
+        if (index !== parseInt(commentIndex, 10)) {
+          return comment;
+        }
+
+        return updatedComment;
+      });
+
+      this.setState({
+        comments: updatedComments
+      });
+    }
+  }
+
   updateType(event) {
     this.setState({
       type: event.target.innerHTML
     });
 
     this.toggleDropdown();
+  }
+
+  clearDescription(event) {
+    const key = event.target.id;
+    this.setState({
+      [key]: ' '
+    });
   }
 
   updateDescription(event) {
@@ -134,6 +165,7 @@ class EntryItem extends Component {
           className="subtitle"
           contentEditable
           suppressContentEditableWarning
+          onClick={this.clearDescription}
           onBlur={this.updateDescription}
         >
           {description}
@@ -154,27 +186,33 @@ class EntryItem extends Component {
             />
             In the area of <strong>{comment.competency}</strong> I{' '}
             <span
+              className="editable"
               id={index + '-behavioralIndicator'}
               contentEditable
               suppressContentEditableWarning
+              onClick={this.clear}
               onBlur={this.updateComment}
             >
               {comment.behavioralIndicator}
             </span>{' '}
             by{' '}
             <span
+              className="editable"
               id={index + '-example'}
               contentEditable
               suppressContentEditableWarning
+              onClick={this.clear}
               onBlur={this.updateComment}
             >
               {comment.example}
             </span>{' '}
             with the impact that{' '}
             <span
+              className="editable"
               id={index + '-impact'}
               contentEditable
               suppressContentEditableWarning
+              onClick={this.clear}
               onBlur={this.updateComment}
             >
               {comment.impact}
