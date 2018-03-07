@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Header from './Components/Header';
 import CompetencyCounter from './Components/CompetencyCounter';
 import EntryList from './Components/EntryList';
 
@@ -55,14 +56,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <nav className="navbar is-light">
-          <div className="navbar-brand">
-            <a className="navbar-item" href="/">
-              <h1 className="title is-4">eparLibs</h1>
-            </a>
-          </div>
-        </nav>
-
+        <Header />
         <section className="section">
           <div className="columns">
             <div className="column is-one-quarter">
