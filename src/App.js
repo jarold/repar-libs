@@ -57,28 +57,30 @@ class App extends Component {
       <div className="App">
         <nav className="navbar is-light">
           <div className="navbar-brand">
-            <a className="navbar-item" href="/"><h1 className="title is-4">eparLibs</h1></a>
+            <a className="navbar-item" href="/">
+              <h1 className="title is-4">eparLibs</h1>
+            </a>
           </div>
         </nav>
 
         <section className="section">
-        <div className="columns">
-          <div className="column is-one-quarter">
-            <CompetencyCounter
-              competencies={this.state.competencies}
-              addEntry={this.addEntry}
-            />
+          <div className="columns">
+            <div className="column is-one-quarter">
+              <CompetencyCounter
+                competencies={this.state.competencies}
+                addEntry={this.addEntry}
+              />
+            </div>
+            <div className="column is-three-quarters">
+              <EntryList
+                entries={this.state.entries}
+                updateCount={this.updateCount}
+              />
+              <button className="button is-fullwidth" onClick={this.addEntry}>
+                Add Entry
+              </button>
+            </div>
           </div>
-          <div className="column is-three-quarters">
-            <EntryList
-              entries={this.state.entries}
-              updateCount={this.updateCount}
-            />
-            <button className="button is-fullwidth" onClick={this.addEntry}>
-              Add Entry
-            </button>
-          </div>
-        </div>
         </section>
       </div>
     );
