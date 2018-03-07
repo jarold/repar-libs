@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import CompetencySelector from './CompetencySelector';
+import EntryType from './EntryType';
 
 class EntryItem extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      typeSelectActive: false,
-      type: this.props.entry.type,
+      type: '',
       description: this.props.entry.description,
       comments: []
     };
 
-    this.toggleDropdown = this.toggleDropdown.bind(this);
     this.clear = this.clear.bind(this);
     this.addComment = this.addComment.bind(this);
     this.clearDescription = this.clearDescription.bind(this);
@@ -20,12 +19,7 @@ class EntryItem extends Component {
     this.updateType = this.updateType.bind(this);
     this.updateComment = this.updateComment.bind(this);
     this.deleteComment = this.deleteComment.bind(this);
-  }
-
-  toggleDropdown() {
-    this.setState({
-      typeSelectActive: !this.state.typeSelectActive
-    });
+    this.handleTypeChange = this.handleTypeChange.bind(this);
   }
 
   clear(e) {
@@ -48,14 +42,6 @@ class EntryItem extends Component {
         comments: updatedComments
       });
     }
-  }
-
-  updateType(event) {
-    this.setState({
-      type: event.target.innerHTML
-    });
-
-    this.toggleDropdown();
   }
 
   clearDescription(event) {
@@ -124,41 +110,18 @@ class EntryItem extends Component {
     });
   }
 
+  handleTypeChange(event) {
+    this.setState({
+      type: event.target.value
+    });
+  }
+
   render() {
     const { type, description } = this.state;
 
-    const dropdownClass = this.state.typeSelectActive
-      ? 'dropdown is-active'
-      : 'dropdown';
-
-    let dropdown = (
-      <div className={dropdownClass}>
-        <div className="dropdown-trigger">
-          <h2 className="title is-3" onClick={this.toggleDropdown}>
-            {type}
-          </h2>
-        </div>
-        <div className="dropdown-menu" id="dropdown-menu2" role="menu">
-          <div className="dropdown-content" onClick={this.updateType}>
-            <div className="dropdown-item">
-              <p>Job Function</p>
-            </div>
-            <hr className="dropdown-divider" />
-            <div className="dropdown-item">
-              <p>Goal</p>
-            </div>
-            <hr className="dropdown-divider" />
-            <div className="dropdown-item">
-              <p>Achievement</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-
     return (
       <div className="box">
-        {dropdown}
+        <EntryType onTypeChange={this.handleTypeChange} />
 
         <h3
           id="description"
