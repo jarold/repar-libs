@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CompetencySelector from './CompetencySelector';
 import EntryType from './EntryType';
 import EntryDescription from './EntryDescription';
+import EntryComments from './EntryComments';
 
 class EntryItem extends Component {
   constructor(props) {
@@ -81,7 +82,6 @@ class EntryItem extends Component {
   }
 
   deleteComment(e) {
-    debugger;
     const deleteAtIndex = parseInt(e.target.parentNode.id.split('-')[1], 10);
 
     const comments = this.state.comments;
@@ -108,8 +108,6 @@ class EntryItem extends Component {
   }
 
   render() {
-    const { type, description } = this.state;
-
     return (
       <div className="box">
         <EntryType onTypeChange={this.handleTypeChange} />
@@ -121,52 +119,11 @@ class EntryItem extends Component {
 
         <CompetencySelector addComment={this.addComment} />
 
-        {this.state.comments.map((comment, index) => (
-          <div
-            className="notification"
-            key={'comment-' + index}
-            id={'comment-' + index}
-          >
-            <button
-              id={index + '-delete'}
-              className="delete"
-              onClick={this.deleteComment}
-            />
-            In the area of <strong>{comment.competency}</strong> I{' '}
-            <span
-              className="editable"
-              id={index + '-behavioralIndicator'}
-              contentEditable
-              suppressContentEditableWarning
-              onClick={this.clear}
-              onBlur={this.updateComment}
-            >
-              {comment.behavioralIndicator}
-            </span>{' '}
-            by{' '}
-            <span
-              className="editable"
-              id={index + '-example'}
-              contentEditable
-              suppressContentEditableWarning
-              onClick={this.clear}
-              onBlur={this.updateComment}
-            >
-              {comment.example}
-            </span>{' '}
-            with the impact that{' '}
-            <span
-              className="editable"
-              id={index + '-impact'}
-              contentEditable
-              suppressContentEditableWarning
-              onClick={this.clear}
-              onBlur={this.updateComment}
-            >
-              {comment.impact}
-            </span>
-          </div>
-        ))}
+        <EntryComments
+          comments={this.state.comments}
+          updateComment={this.updateComment}
+          deleteComment={this.deleteComment}
+        />
       </div>
     );
   }
