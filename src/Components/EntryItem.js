@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CompetencySelector from './CompetencySelector';
 import EntryType from './EntryType';
+import EntryDescription from './EntryDescription';
 
 class EntryItem extends Component {
   constructor(props) {
@@ -14,12 +15,10 @@ class EntryItem extends Component {
 
     this.clear = this.clear.bind(this);
     this.addComment = this.addComment.bind(this);
-    this.clearDescription = this.clearDescription.bind(this);
-    this.updateDescription = this.updateDescription.bind(this);
-    this.updateType = this.updateType.bind(this);
     this.updateComment = this.updateComment.bind(this);
     this.deleteComment = this.deleteComment.bind(this);
     this.handleTypeChange = this.handleTypeChange.bind(this);
+    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
   }
 
   clear(e) {
@@ -42,20 +41,6 @@ class EntryItem extends Component {
         comments: updatedComments
       });
     }
-  }
-
-  clearDescription(event) {
-    const key = event.target.id;
-    this.setState({
-      [key]: ' '
-    });
-  }
-
-  updateDescription(event) {
-    const key = event.target.id;
-    this.setState({
-      [key]: event.target.innerHTML
-    });
   }
 
   addComment(event) {
@@ -116,6 +101,12 @@ class EntryItem extends Component {
     });
   }
 
+  handleDescriptionChange(event) {
+    this.setState({
+      description: event.target.value
+    });
+  }
+
   render() {
     const { type, description } = this.state;
 
@@ -123,16 +114,10 @@ class EntryItem extends Component {
       <div className="box">
         <EntryType onTypeChange={this.handleTypeChange} />
 
-        <h3
-          id="description"
-          className="subtitle"
-          contentEditable
-          suppressContentEditableWarning
-          onClick={this.clearDescription}
-          onBlur={this.updateDescription}
-        >
-          {description}
-        </h3>
+        <EntryDescription
+          description={this.state.description}
+          onDescriptionChange={this.handleDescriptionChange}
+        />
 
         <CompetencySelector addComment={this.addComment} />
 
