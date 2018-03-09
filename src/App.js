@@ -1,34 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import { createStore } from 'redux';
-import reducers from './reducers';
-import { addEntry } from './actions';
-
-import Header from './Components/Header';
-import CompetencyCounter from './Components/CompetencyCounter';
-import EntryList from './Components/EntryList';
-
-const store = createStore(
-  reducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
-
-store.dispatch(addEntry());
-store.dispatch(addEntry());
-store.dispatch(addEntry());
+import Header from './components/Header';
+import CompetencyCounter from './components/CompetencyCounter';
+import EntryList from './components/EntryList';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      entries: [
-        {
-          type: 'Select a type',
-          description: '[Description]'
-        }
-      ],
       competencies: {
         Communication: 0,
         'Decision Making': 0,
@@ -44,21 +25,7 @@ class App extends Component {
       }
     };
 
-    this.addEntry = this.addEntry.bind(this);
     this.updateCount = this.updateCount.bind(this);
-  }
-
-  addEntry() {
-    const newEntry = {
-      type: 'Select a type',
-      description: 'Description'
-    };
-
-    const newEntries = [...this.state.entries, newEntry];
-
-    this.setState({
-      entries: newEntries
-    });
   }
 
   updateCount(id) {
@@ -84,9 +51,6 @@ class App extends Component {
                 entries={this.state.entries}
                 updateCount={this.updateCount}
               />
-              <button className="button is-fullwidth" onClick={this.addEntry}>
-                Add Entry
-              </button>
             </div>
           </div>
         </section>
