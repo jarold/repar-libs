@@ -107,6 +107,8 @@ class EntryItem extends Component {
     });
   }
 
+  handleCompetencyChange() {}
+
   render() {
     return (
       <div className="box">
@@ -123,6 +125,7 @@ class EntryItem extends Component {
           comments={this.state.comments}
           updateComment={this.updateComment}
           deleteComment={this.deleteComment}
+          onCompetencyChange={this.handleCompetencyChange}
         />
       </div>
     );
