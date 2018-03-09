@@ -1,8 +1,22 @@
 import React, { Component } from 'react';
 import './App.css';
+
+import { createStore } from 'redux';
+import reducers from './reducers';
+import { addEntry } from './actions';
+
 import Header from './Components/Header';
 import CompetencyCounter from './Components/CompetencyCounter';
 import EntryList from './Components/EntryList';
+
+const store = createStore(
+  reducers,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
+store.dispatch(addEntry());
+store.dispatch(addEntry());
+store.dispatch(addEntry());
 
 class App extends Component {
   constructor(props) {
