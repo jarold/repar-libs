@@ -58,7 +58,7 @@ class EntryItem extends Component {
       comments: newComments
     });
 
-    this.props.updateCount(event.target.innerHTML);
+    this.props.onUpdateCount(event.target.innerHTML);
   }
 
   updateComment(e) {

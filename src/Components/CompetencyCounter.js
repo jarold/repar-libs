@@ -1,7 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 const CompetencyCounter = props => {
-  const competencies = props.competencies;
+  const competencies = props.competenciesCount;
   const keys = Object.keys(competencies);
 
   return (
@@ -13,7 +14,11 @@ const CompetencyCounter = props => {
           <li key={key}>
             <div className="tags has-addons">
               <span className="tag">{key}</span>
-              <span className={"tag " + (competencies[key] > 1 ? 'is-success' : '')}>{competencies[key]}</span>
+              <span
+                className={'tag ' + (competencies[key] > 1 ? 'is-success' : '')}
+              >
+                {competencies[key]}
+              </span>
             </div>
           </li>
         ))}
@@ -22,4 +27,8 @@ const CompetencyCounter = props => {
   );
 };
 
-export default CompetencyCounter;
+const mapStateToProps = state => {
+  return { competenciesCount: state.counter };
+};
+
+export default connect(mapStateToProps)(CompetencyCounter);

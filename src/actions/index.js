@@ -2,15 +2,24 @@
 
 import * as actions from './actionTypes';
 
-export const addEntry = () => {
+const addEntry = () => {
   return {
     type: actions.ADD_ENTRY
   };
 };
 
-export const deleteEntry = (id) => {
+const deleteEntry = id => {
   return {
     type: actions.DELETE_ENTRY,
     id: id
-  }
-}
+  };
+};
+
+const updateCount = compName => {
+  return {
+    type: actions.UPDATE_COUNTER,
+    compName: compName
+  };
+};
+
+export { addEntry, deleteEntry, updateCount };
