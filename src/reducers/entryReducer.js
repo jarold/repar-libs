@@ -5,7 +5,8 @@ const initialState = [
   {
     id: uuid(),
     type: 'Select a type',
-    description: '[Description]'
+    description: '[Description]',
+    comments: []
   }
 ];
 
@@ -17,11 +18,21 @@ const entryReducer = (state = initialState, action) => {
         {
           id: uuid(),
           type: 'Select a type',
-          description: '[Description]'
+          description: '[Description]',
+          comments: []
         }
       ];
     case actions.DELETE_ENTRY:
-      return state.filter((entry) => entry.id !== action.id);
+      return state.filter(entry => entry.id !== action.id);
+    case actions.ADD_COMMENT:
+      const newState = [...state];
+      newState[action.index].comments = state[action.index].comments.concat({
+        competency: action.competency,
+        behavioralIndicator: '[Behavioral Indicator]',
+        example: '[Example]',
+        impact: '[Impact]'
+      });
+      return newState;
     default:
       return state;
   }

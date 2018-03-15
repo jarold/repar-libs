@@ -15,6 +15,21 @@ const deleteEntry = id => {
   };
 };
 
+const addComment = (compName, index) => {
+  return {
+    type: actions.ADD_COMMENT,
+    competency: compName,
+    index: index
+  };
+};
+
+const deleteComment = index => {
+  return {
+    type: actions.DELETE_COMMENT,
+    index: index
+  };
+};
+
 const updateCount = compName => {
   return {
     type: actions.UPDATE_COUNTER,
@@ -22,4 +37,4 @@ const updateCount = compName => {
   };
 };
 
-export { addEntry, deleteEntry, updateCount };
+export { addEntry, deleteEntry, addComment, deleteComment, updateCount };
