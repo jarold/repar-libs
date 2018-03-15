@@ -1,7 +1,6 @@
 import * as actions from '../actions/actionTypes';
 import { v1 as uuid } from 'uuid';
 
-console.log(uuid());
 const initialState = [
   {
     id: uuid(),
