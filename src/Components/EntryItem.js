@@ -110,25 +110,16 @@ class EntryItem extends Component {
   handleCompetencyChange() {}
 
   render() {
-    return (
-      <div className="box">
+    return <div className="box">
         <EntryType onTypeChange={this.handleTypeChange} />
+        <button className="delete is-pulled-right" onClick={this.props.onDeleteEntry} />
 
-        <EntryDescription
-          description={this.state.description}
-          onDescriptionChange={this.handleDescriptionChange}
-        />
+        <EntryDescription description={this.state.description} onDescriptionChange={this.handleDescriptionChange} />
 
         <CompetencySelector addComment={this.addComment} />
 
-        <EntryComments
-          comments={this.state.comments}
-          updateComment={this.updateComment}
-          deleteComment={this.deleteComment}
-          onCompetencyChange={this.handleCompetencyChange}
-        />
-      </div>
-    );
+        <EntryComments comments={this.state.comments} updateComment={this.updateComment} deleteComment={this.deleteComment} onCompetencyChange={this.handleCompetencyChange} />
+      </div>;
   }
 }
 

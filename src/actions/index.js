@@ -1,4 +1,4 @@
-// Action Creator
+// Action Creators
 
 import * as actions from './actionTypes';
 
@@ -7,3 +7,10 @@ export const addEntry = () => {
     type: actions.ADD_ENTRY
   };
 };
+
+export const deleteEntry = (id) => {
+  return {
+    type: actions.DELETE_ENTRY,
+    id: id
+  }
+}

@@ -1,14 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addEntry } from '../actions/index';
 
+import { deleteEntry } from '../actions';
 import EntryItem from './EntryItem';
 
 const EntryList = props => {
   return (
     <div>
-      {props.entries.map((entry, index) => (
-        <EntryItem key={index} entry={entry} updateCount={props.updateCount} />
+      {props.entries.map((entry) => (
+        <EntryItem
+          key={entry.id}
+          entry={entry}
+          updateCount={props.updateCount}
+          onDeleteEntry={() => props.onDeleteEntry(entry.id)}
+        />
       ))}
     </div>
   );
@@ -20,4 +25,12 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(EntryList);
+const mapDispatchToProps = dispatch => {
+  return {
+    onDeleteEntry: id => {
+      dispatch(deleteEntry(id));
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(EntryList);
