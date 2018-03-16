@@ -24,6 +24,22 @@ const entryReducer = (state = initialState, action) => {
       ];
     case actions.DELETE_ENTRY:
       return state.filter(entry => entry.id !== action.id);
+    case actions.UPDATE_ENTRY_TYPE:
+      return state.map(entry => {
+        if (entry.id === action.id) {
+          return { ...entry, type: action.entType };
+        } else {
+          return entry;
+        }
+      });
+    case actions.UPDATE_ENTRY_DESCRIPTION:
+      return state.map(entry => {
+        if (entry.id === action.id) {
+          return { ...entry, description: action.description };
+        } else {
+          return entry;
+        }
+      });
     case actions.ADD_COMMENT:
       const newState = [...state];
       newState[action.index].comments = state[action.index].comments.concat({

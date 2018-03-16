@@ -15,6 +15,22 @@ const deleteEntry = id => {
   };
 };
 
+const updateEntryType = (entType, id) => {
+  return {
+    type: actions.UPDATE_ENTRY_TYPE,
+    entType: entType,
+    id: id
+  };
+};
+
+const updateEntryDescription = (description, id) => {
+  return {
+    type: actions.UPDATE_ENTRY_DESCRIPTION,
+    description: description,
+    id: id
+  };
+};
+
 const addComment = (compName, index) => {
   return {
     type: actions.ADD_COMMENT,
@@ -37,4 +53,12 @@ const updateCount = compName => {
   };
 };
 
-export { addEntry, deleteEntry, addComment, deleteComment, updateCount };
+export {
+  addEntry,
+  deleteEntry,
+  updateEntryType,
+  updateEntryDescription,
+  addComment,
+  deleteComment,
+  updateCount
+};

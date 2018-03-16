@@ -3,6 +3,7 @@ import CompetencySelector from './CompetencySelector';
 import EntryType from './EntryType';
 import EntryDescription from './EntryDescription';
 import EntryComments from './EntryComments';
+import { updateEntryDescription } from '../actions';
 
 class EntryItem extends Component {
   constructor(props) {
@@ -78,15 +79,11 @@ class EntryItem extends Component {
   }
 
   handleTypeChange(event) {
-    this.setState({
-      type: event.target.value
-    });
+    this.props.onTypeChange(event.target.value);
   }
 
   handleDescriptionChange(event) {
-    this.setState({
-      description: event.target.value
-    });
+    this.props.onDescriptionChange(event.target.value);
   }
 
   handleCompetencyChange() {}
