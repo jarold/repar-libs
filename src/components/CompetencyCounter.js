@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const CompetencyCounter = props => {
-  const competencies = props.competenciesCount;
+  const competencies = props.competencies;
   const keys = Object.keys(competencies);
 
   return (
@@ -28,7 +28,7 @@ const CompetencyCounter = props => {
 };
 
 const mapStateToProps = state => {
-  return { competenciesCount: state.counter };
+  return { competencies: state.counter };
 };
 
 export default connect(mapStateToProps)(CompetencyCounter);

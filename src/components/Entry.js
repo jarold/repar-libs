@@ -5,7 +5,7 @@ import EntryDescription from './EntryDescription';
 import EntryComments from './EntryComments';
 import { updateEntryDescription } from '../actions';
 
-class EntryItem extends Component {
+class Entry extends Component {
   constructor(props) {
     super(props);
 
@@ -115,4 +115,4 @@ class EntryItem extends Component {
   }
 }
 
-export default EntryItem;
+export default Entry;

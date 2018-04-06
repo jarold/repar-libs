@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Modal from '../UI/Modal';
 
 class EntryComments extends Component {
@@ -22,22 +23,12 @@ class EntryComments extends Component {
   render() {
     let competenciesList = (
       <div className="box has-text-centered">
-        <p className="has-text-weight-bold is-size-4">
-          Update Selected Competency
-        </p>
+        <p className="has-text-weight-bold is-size-4">Update Competency</p>
 
         <ul className="buttons">
-          <li className="button">Communication</li>
-          <li className="button">Decision Making</li>
-          <li className="button">Leadership</li>
-          <li className="button">Principles of Community</li>
-          <li className="button">Problem Solving</li>
-          <li className="button">Quality Improvement</li>
-          <li className="button">Service Focus</li>
-          <li className="button">Stewardship and Managing Resources</li>
-          <li className="button">Strategic Planning</li>
-          <li className="button">Teamwork</li>
-          <li className="button">Managing People</li>
+          {Object.keys(this.props.competencies).map(competency => {
+            return <li className="button">{competency}</li>;
+          })}
         </ul>
       </div>
     );
@@ -54,7 +45,7 @@ class EntryComments extends Component {
           onClick={this.props.deleteComment}
         />
         In the area of
-        <span onClick={this.toggleCompetencyModal}>
+        <span className="selectable" onClick={this.toggleCompetencyModal}>
           <strong>{` ${comment.competency} `}</strong>
         </span>
         I{' '}
@@ -108,4 +99,10 @@ class EntryComments extends Component {
   }
 }
 
-export default EntryComments;
+const mapStateToProps = state => {
+  return {
+    competencies: state.counter
+  };
+};
+
+export default connect(mapStateToProps)(EntryComments);

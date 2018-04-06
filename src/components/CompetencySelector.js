@@ -1,27 +1,19 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 const CompetencySelector = props => {
-  const competencies = {
-    Communication: 0,
-    'Decision Making': 0,
-    Leadership: 0,
-    'Principles of Community': 0,
-    'Problem Solving': 0,
-    'Quality Improvement': 0,
-    'Service Focus': 0,
-    'Stewardship and Managing Resources': 0,
-    'Strategic Planning': 0,
-    Teamwork: 0,
-    'Managing People': 0
-  };
-  const keys = Object.keys(competencies);
+  const keys = Object.keys(props.competencies);
 
   return (
-    <div style={{ marginBottom: '1.5em'}}>
+    <div style={{ marginBottom: '1.5em' }}>
       <p>Demonstrated Competencies</p>
       <div className="tags">
         {keys.map((key, index) => (
-          <span key={"tag"+index} className="tag is-rounded" onClick={props.addComment}>
+          <span
+            key={'tag' + index}
+            className="tag is-rounded selectable"
+            onClick={props.addComment}
+          >
             {key}
           </span>
         ))}
@@ -30,4 +22,8 @@ const CompetencySelector = props => {
   );
 };
 
-export default CompetencySelector;
+const mapStateToProps = state => {
+  return { competencies: state.counter };
+};
+
+export default connect(mapStateToProps)(CompetencySelector);

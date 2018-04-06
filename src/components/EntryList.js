@@ -8,13 +8,13 @@ import {
   updateCount,
   addComment
 } from '../actions';
-import EntryItem from './EntryItem';
+import Entry from './Entry';
 
 const EntryList = props => {
   return (
     <div>
       {props.entries.map((entry, index) => (
-        <EntryItem
+        <Entry
           key={entry.id}
           entry={entry}
           onUpdateCount={compName => props.onUpdateCount(compName)}
