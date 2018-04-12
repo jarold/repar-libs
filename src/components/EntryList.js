@@ -6,7 +6,8 @@ import {
   updateEntryType,
   updateEntryDescription,
   updateCount,
-  addComment
+  addComment,
+  deleteComment
 } from '../actions';
 import Entry from './Entry';
 
@@ -17,13 +18,16 @@ const EntryList = props => {
         <Entry
           key={entry.id}
           entry={entry}
-          onUpdateCount={compName => props.onUpdateCount(compName)}
-          onDeleteEntry={() => props.onDeleteEntry(entry.id)}
+          onUpdateCount={compName => props.handleUpdateCount(compName)}
+          onDeleteEntry={() => props.handleDeleteEntry(entry.id)}
           onTypeChange={entType => props.handleTypeChange(entType, entry.id)}
           onDescriptionChange={desc =>
             props.handleDescrptionChange(desc, entry.id)
           }
-          onAddComment={compName => props.onAddComment(compName, index)}
+          onAddComment={compName => props.handleAddComment(compName, index)}
+          onDeleteComment={commentIdx =>
+            props.handleDeleteComment(index, commentIdx)
+          }
         />
       ))}
     </div>
@@ -38,7 +42,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onDeleteEntry: id => {
+    handleDeleteEntry: id => {
       dispatch(deleteEntry(id));
     },
     handleTypeChange: (entType, id) => {
@@ -47,11 +51,14 @@ const mapDispatchToProps = dispatch => {
     handleDescrptionChange: (desc, id) => {
       dispatch(updateEntryDescription(desc, id));
     },
-    onUpdateCount: compName => {
+    handleUpdateCount: compName => {
       dispatch(updateCount(compName));
     },
-    onAddComment: (compName, idx) => {
+    handleAddComment: (compName, idx) => {
       dispatch(addComment(compName, idx));
+    },
+    handleDeleteComment: (entryIndex, commentIndex) => {
+      dispatch(deleteComment(entryIndex, commentIndex));
     }
   };
 };

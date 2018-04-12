@@ -27,7 +27,11 @@ class EntryComments extends Component {
 
         <ul className="buttons">
           {Object.keys(this.props.competencies).map(competency => {
-            return <li className="button">{competency}</li>;
+            return (
+              <li key={competency} className="button">
+                {competency}
+              </li>
+            );
           })}
         </ul>
       </div>
@@ -42,7 +46,9 @@ class EntryComments extends Component {
         <button
           id={index + '-delete'}
           className="delete"
-          onClick={this.props.deleteComment}
+          onClick={() => {
+            this.props.onDeleteComment(index);
+          }}
         />
         In the area of
         <span className="selectable" onClick={this.toggleCompetencyModal}>

@@ -1,5 +1,4 @@
 // Action Creators
-
 import * as actions from './actionTypes';
 
 const addEntry = () => {
@@ -39,10 +38,11 @@ const addComment = (compName, index) => {
   };
 };
 
-const deleteComment = index => {
+const deleteComment = (entryIndex, commentIndex) => {
   return {
     type: actions.DELETE_COMMENT,
-    index: index
+    entryIndex,
+    commentIndex
   };
 };
 

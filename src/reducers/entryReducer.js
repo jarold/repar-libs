@@ -40,7 +40,7 @@ const entryReducer = (state = initialState, action) => {
           return entry;
         }
       });
-    case actions.ADD_COMMENT:
+    case actions.ADD_COMMENT: {
       const newState = [...state];
       newState[action.index].comments = state[action.index].comments.concat({
         competency: action.competency,
@@ -49,6 +49,15 @@ const entryReducer = (state = initialState, action) => {
         impact: '[Impact]'
       });
       return newState;
+    }
+    case actions.DELETE_COMMENT: {
+      const { entryIndex, commentIndex } = action;
+      const newState = [...state];
+      newState[entryIndex].comments = newState[entryIndex].comments.filter(
+        (comment, index) => index !== commentIndex
+      );
+      return newState;
+    }
     default:
       return state;
   }

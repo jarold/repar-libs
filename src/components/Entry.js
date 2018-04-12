@@ -3,7 +3,6 @@ import CompetencySelector from './CompetencySelector';
 import EntryType from './EntryType';
 import EntryDescription from './EntryDescription';
 import EntryComments from './EntryComments';
-import { updateEntryDescription } from '../actions';
 
 class Entry extends Component {
   constructor(props) {
@@ -12,7 +11,6 @@ class Entry extends Component {
     this.clear = this.clear.bind(this);
     this.addComment = this.addComment.bind(this);
     this.updateComment = this.updateComment.bind(this);
-    this.deleteComment = this.deleteComment.bind(this);
     this.handleTypeChange = this.handleTypeChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
   }
@@ -64,20 +62,6 @@ class Entry extends Component {
     });
   }
 
-  deleteComment(e) {
-    const deleteAtIndex = parseInt(e.target.parentNode.id.split('-')[1], 10);
-
-    const comments = this.state.comments;
-    const updatedComments = [
-      ...comments.slice(0, deleteAtIndex),
-      ...comments.slice(deleteAtIndex + 1)
-    ];
-
-    this.setState({
-      comments: updatedComments
-    });
-  }
-
   handleTypeChange(event) {
     this.props.onTypeChange(event.target.value);
   }
@@ -107,7 +91,7 @@ class Entry extends Component {
         <EntryComments
           comments={this.props.entry.comments}
           updateComment={this.updateComment}
-          deleteComment={this.deleteComment}
+          onDeleteComment={this.props.onDeleteComment}
           onCompetencyChange={this.handleCompetencyChange}
         />
       </div>
