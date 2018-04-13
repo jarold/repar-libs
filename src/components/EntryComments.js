@@ -20,6 +20,14 @@ class EntryComments extends Component {
     console.log(event.target.innerHTML);
   }
 
+  handleUpdateComment = index => {
+    this.props.updateComment(
+      index,
+      this.behavioralInput.getAttribute('name'),
+      this.behavioralInput.textContent
+    );
+  };
+
   render() {
     let competenciesList = (
       <div className="box has-text-centered">
@@ -57,11 +65,14 @@ class EntryComments extends Component {
         I{' '}
         <span
           className="editable"
-          id={index + '-behavioralIndicator'}
+          name={'Behavioral Indicator'}
+          ref={behavioralInput => (this.behavioralInput = behavioralInput)}
           contentEditable
           suppressContentEditableWarning
           onClick={this.clear}
-          onBlur={this.props.updateComment}
+          onBlur={() => {
+            this.handleUpdateComment(index);
+          }}
         >
           {comment.behavioralIndicator}
         </span>{' '}

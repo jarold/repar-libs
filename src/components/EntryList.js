@@ -7,6 +7,7 @@ import {
   updateEntryDescription,
   updateCount,
   addComment,
+  updateComment,
   deleteComment
 } from '../actions';
 import Entry from './Entry';
@@ -25,6 +26,9 @@ const EntryList = props => {
             props.handleDescrptionChange(desc, entry.id)
           }
           onAddComment={compName => props.handleAddComment(compName, index)}
+          onUpdateComment={(commentIdx, name, text) => {
+            props.handleUpdateComment(index, commentIdx, name, text);
+          }}
           onDeleteComment={commentIdx =>
             props.handleDeleteComment(index, commentIdx)
           }
@@ -56,6 +60,9 @@ const mapDispatchToProps = dispatch => {
     },
     handleAddComment: (compName, idx) => {
       dispatch(addComment(compName, idx));
+    },
+    handleUpdateComment: (entryIndex, commentIndex, name, text) => {
+      dispatch(updateComment(entryIndex, commentIndex, name, text));
     },
     handleDeleteComment: (entryIndex, commentIndex) => {
       dispatch(deleteComment(entryIndex, commentIndex));

@@ -50,6 +50,17 @@ const entryReducer = (state = initialState, action) => {
       });
       return newState;
     }
+    case actions.UPDATE_COMMENT: {
+      const { entryIndex, commentIndex, name, text } = action;
+      const newState = [...state];
+
+      console.log('value in reducer:', name);
+      console.log('value in reducer:', text);
+      console.log('commentIndex in reducer:', commentIndex);
+      console.log('entryIndex in reducer:', entryIndex);
+      // create new comment and replace
+      return newState;
+    }
     case actions.DELETE_COMMENT: {
       const { entryIndex, commentIndex } = action;
       const newState = [...state];

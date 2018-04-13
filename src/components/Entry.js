@@ -10,7 +10,7 @@ class Entry extends Component {
 
     this.clear = this.clear.bind(this);
     this.addComment = this.addComment.bind(this);
-    this.updateComment = this.updateComment.bind(this);
+    // this.updateComment = this.updateComment.bind(this);
     this.handleTypeChange = this.handleTypeChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
   }
@@ -42,25 +42,29 @@ class Entry extends Component {
     this.props.onUpdateCount(event.target.innerHTML);
   }
 
-  updateComment(e) {
-    const [commentIndex, commentKey] = e.target.id.split('-');
-    const comments = this.state.comments;
-    const updatedComment = Object.assign({}, comments[commentIndex], {
-      [commentKey]: e.target.innerHTML
-    });
+  // updateComment(e) {
+  //   const [commentIndex, commentKey] = e.target.id.split('-');
+  //   const comments = this.state.comments;
+  //   const updatedComment = Object.assign({}, comments[commentIndex], {
+  //     [commentKey]: e.target.innerHTML
+  //   });
 
-    const updatedComments = comments.map((comment, index) => {
-      if (index !== parseInt(commentIndex, 10)) {
-        return comment;
-      }
+  //   const updatedComments = comments.map((comment, index) => {
+  //     if (index !== parseInt(commentIndex, 10)) {
+  //       return comment;
+  //     }
 
-      return updatedComment;
-    });
+  //     return updatedComment;
+  //   });
 
-    this.setState({
-      comments: updatedComments
-    });
-  }
+  //   this.setState({
+  //     comments: updatedComments
+  //   });
+  // }
+
+  // updateComment(event) {
+  //   this.props.onUpdateComment();
+  // }
 
   handleTypeChange(event) {
     this.props.onTypeChange(event.target.value);
@@ -90,7 +94,7 @@ class Entry extends Component {
 
         <EntryComments
           comments={this.props.entry.comments}
-          updateComment={this.updateComment}
+          updateComment={this.props.onUpdateComment}
           onDeleteComment={this.props.onDeleteComment}
           onCompetencyChange={this.handleCompetencyChange}
         />

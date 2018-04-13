@@ -38,6 +38,16 @@ const addComment = (compName, index) => {
   };
 };
 
+const updateComment = (entryIndex, commentIndex, name, text) => {
+  return {
+    type: actions.UPDATE_COMMENT,
+    entryIndex,
+    commentIndex,
+    name,
+    text
+  };
+};
+
 const deleteComment = (entryIndex, commentIndex) => {
   return {
     type: actions.DELETE_COMMENT,
@@ -59,6 +69,7 @@ export {
   updateEntryType,
   updateEntryDescription,
   addComment,
+  updateComment,
   deleteComment,
   updateCount
 };
