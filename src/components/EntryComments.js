@@ -9,15 +9,21 @@ class EntryComments extends Component {
     this.state = { editCompetency: false };
 
     this.toggleCompetencyModal = this.toggleCompetencyModal.bind(this);
-    this.handleSelection = this.handleSelection.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
   }
 
   toggleCompetencyModal() {
     this.setState({ editCompetency: !this.state.editCompetency });
   }
 
-  handleSelection(event) {
-    console.log(event.target.innerHTML);
+  handleFocus(event) {
+    const text = event.target.textContent;
+    const first = text.split('')[0];
+    const last = text.split('')[text.split('').length - 1];
+
+    if (first === '[' && last === ']') {
+      event.target.innerHTML = '';
+    }
   }
 
   handleUpdateIndicatorText = index => {
@@ -80,7 +86,7 @@ class EntryComments extends Component {
           ref={behavioralInput => (this.behavioralInput = behavioralInput)}
           contentEditable
           suppressContentEditableWarning
-          onClick={this.clear}
+          onFocus={this.handleFocus}
           onBlur={() => {
             this.handleUpdateIndicatorText(index);
           }}
@@ -94,7 +100,7 @@ class EntryComments extends Component {
           ref={exampleInput => (this.exampleInput = exampleInput)}
           contentEditable
           suppressContentEditableWarning
-          onClick={this.clear}
+          onFocus={this.handleFocus}
           onBlur={() => {
             this.handleUpdateExampleText(index);
           }}
@@ -108,7 +114,7 @@ class EntryComments extends Component {
           ref={impactInput => (this.impactInput = impactInput)}
           contentEditable
           suppressContentEditableWarning
-          onClick={this.clear}
+          onFocus={this.handleFocus}
           onBlur={() => {
             this.handleUpdateImpactText(index);
           }}

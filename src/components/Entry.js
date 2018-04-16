@@ -8,63 +8,15 @@ class Entry extends Component {
   constructor(props) {
     super(props);
 
-    this.clear = this.clear.bind(this);
     this.addComment = this.addComment.bind(this);
-    // this.updateComment = this.updateComment.bind(this);
     this.handleTypeChange = this.handleTypeChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
-  }
-
-  clear(e) {
-    if (e.target.innerHTML.split('')[0] === '[') {
-      const [commentIndex, commentKey] = e.target.id.split('-');
-      const comments = this.state.comments;
-      const updatedComment = Object.assign({}, comments[commentIndex], {
-        [commentKey]: ' '
-      });
-
-      const updatedComments = comments.map((comment, index) => {
-        if (index !== parseInt(commentIndex, 10)) {
-          return comment;
-        }
-
-        return updatedComment;
-      });
-
-      this.setState({
-        comments: updatedComments
-      });
-    }
   }
 
   addComment(event) {
     this.props.onAddComment(event.target.innerHTML);
     this.props.onUpdateCount(event.target.innerHTML);
   }
-
-  // updateComment(e) {
-  //   const [commentIndex, commentKey] = e.target.id.split('-');
-  //   const comments = this.state.comments;
-  //   const updatedComment = Object.assign({}, comments[commentIndex], {
-  //     [commentKey]: e.target.innerHTML
-  //   });
-
-  //   const updatedComments = comments.map((comment, index) => {
-  //     if (index !== parseInt(commentIndex, 10)) {
-  //       return comment;
-  //     }
-
-  //     return updatedComment;
-  //   });
-
-  //   this.setState({
-  //     comments: updatedComments
-  //   });
-  // }
-
-  // updateComment(event) {
-  //   this.props.onUpdateComment();
-  // }
 
   handleTypeChange(event) {
     this.props.onTypeChange(event.target.value);
