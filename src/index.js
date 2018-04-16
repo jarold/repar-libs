@@ -1,4 +1,5 @@
 import 'bulma/css/bulma.css';
+import throttle from 'lodash/throttle';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -33,9 +34,12 @@ const store = createStore(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-store.subscribe(() => {
-  saveState(store.getState());
-});
+store.subscribe(
+  throttle(() => {
+    saveState(store.getState());
+  }),
+  1000
+);
 
 ReactDOM.render(
   <Provider store={store}>
