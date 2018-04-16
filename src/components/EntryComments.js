@@ -8,6 +8,7 @@ class EntryComments extends Component {
 
     this.state = { editCompetency: false };
 
+    this.handleCompetencyChange = this.handleCompetencyChange.bind(this);
     this.toggleCompetencyModal = this.toggleCompetencyModal.bind(this);
     this.handleFocus = this.handleFocus.bind(this);
   }
@@ -24,6 +25,14 @@ class EntryComments extends Component {
     if (first === '[' && last === ']') {
       event.target.innerHTML = '';
     }
+  }
+
+  handleCompetencyChange(event) {
+    const index = this.comment.getAttribute('name');
+
+    this.props.updateComment(index, 'competency', event.target.textContent);
+
+    this.setState({ editCompetency: !this.state.editCompetency });
   }
 
   handleUpdateIndicatorText = index => {
@@ -68,7 +77,12 @@ class EntryComments extends Component {
     );
 
     const comments = this.props.comments.map((comment, index) => (
-      <div className="notification" key={'comment-' + index}>
+      <div
+        className="notification"
+        key={'comment-' + index}
+        name={index}
+        ref={comment => (this.comment = comment)}
+      >
         <button
           className="delete"
           onClick={() => {
@@ -129,7 +143,7 @@ class EntryComments extends Component {
         <Modal
           show={this.state.editCompetency}
           toggle={this.toggleCompetencyModal}
-          select={this.props.updateComment}
+          select={this.handleCompetencyChange}
         >
           {competenciesList}
         </Modal>
