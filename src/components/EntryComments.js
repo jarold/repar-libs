@@ -20,11 +20,27 @@ class EntryComments extends Component {
     console.log(event.target.innerHTML);
   }
 
-  handleUpdateComment = index => {
+  handleUpdateIndicatorText = index => {
     this.props.updateComment(
       index,
       this.behavioralInput.getAttribute('name'),
       this.behavioralInput.textContent
+    );
+  };
+
+  handleUpdateExampleText = index => {
+    this.props.updateComment(
+      index,
+      this.exampleInput.getAttribute('name'),
+      this.exampleInput.textContent
+    );
+  };
+
+  handleUpdateImpactText = index => {
+    this.props.updateComment(
+      index,
+      this.impactInput.getAttribute('name'),
+      this.impactInput.textContent
     );
   };
 
@@ -46,13 +62,8 @@ class EntryComments extends Component {
     );
 
     const comments = this.props.comments.map((comment, index) => (
-      <div
-        className="notification"
-        key={'comment-' + index}
-        id={'comment-' + index}
-      >
+      <div className="notification" key={'comment-' + index}>
         <button
-          id={index + '-delete'}
           className="delete"
           onClick={() => {
             this.props.onDeleteComment(index);
@@ -65,13 +76,13 @@ class EntryComments extends Component {
         I{' '}
         <span
           className="editable"
-          name={'Behavioral Indicator'}
+          name="behavioralIndicator"
           ref={behavioralInput => (this.behavioralInput = behavioralInput)}
           contentEditable
           suppressContentEditableWarning
           onClick={this.clear}
           onBlur={() => {
-            this.handleUpdateComment(index);
+            this.handleUpdateIndicatorText(index);
           }}
         >
           {comment.behavioralIndicator}
@@ -79,22 +90,28 @@ class EntryComments extends Component {
         by{' '}
         <span
           className="editable"
-          id={index + '-example'}
+          name="example"
+          ref={exampleInput => (this.exampleInput = exampleInput)}
           contentEditable
           suppressContentEditableWarning
           onClick={this.clear}
-          onBlur={this.props.updateComment}
+          onBlur={() => {
+            this.handleUpdateExampleText(index);
+          }}
         >
           {comment.example}
         </span>{' '}
         with the impact that{' '}
         <span
           className="editable"
-          id={index + '-impact'}
+          name="impact"
+          ref={impactInput => (this.impactInput = impactInput)}
           contentEditable
           suppressContentEditableWarning
           onClick={this.clear}
-          onBlur={this.props.updateComment}
+          onBlur={() => {
+            this.handleUpdateImpactText(index);
+          }}
         >
           {comment.impact}
         </span>
