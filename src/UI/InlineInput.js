@@ -15,7 +15,7 @@ class InlineInput extends Component {
 
   componentDidUpdate() {
     if (this.state.editMode) {
-      this.textInput.focus();
+      this.textarea.focus();
     }
   }
 
@@ -35,16 +35,27 @@ class InlineInput extends Component {
   render() {
     if (this.state.editMode) {
       return (
-        <input
-          value={this.state.value}
-          onChange={this.handleChange}
-          onBlur={this.handleBlur}
-          ref={node => (this.textInput = node)}
-        />
+        <div>
+          <textarea
+            style={{ width: '100%', fontSize: '1em' }}
+            rows={8}
+            value={this.state.value}
+            onChange={this.handleChange}
+            onBlur={this.handleBlur}
+            ref={ta => (this.textarea = ta)}
+          />
+        </div>
       );
     }
 
-    return <span onClick={this.toggleEditMode}>{this.props.children}</span>;
+    return (
+      <span
+        style={{ backgroundColor: '#E6E6E6' }}
+        onClick={this.toggleEditMode}
+      >
+        {this.props.children}
+      </span>
+    );
   }
 }
 

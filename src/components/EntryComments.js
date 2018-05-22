@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Modal from '../UI/Modal';
+import InlineInput from '../UI/InlineInput';
 
 class EntryComments extends Component {
   constructor(props) {
@@ -35,28 +36,16 @@ class EntryComments extends Component {
     this.setState({ editCompetency: !this.state.editCompetency });
   }
 
-  handleUpdateIndicatorText = index => {
-    this.props.updateComment(
-      index,
-      this.behavioralInput.getAttribute('name'),
-      this.behavioralInput.textContent
-    );
+  handleUpdateIndicatorText = (index, text) => {
+    this.props.updateComment(index, 'behavioralIndicator', text);
   };
 
-  handleUpdateExampleText = index => {
-    this.props.updateComment(
-      index,
-      this.exampleInput.getAttribute('name'),
-      this.exampleInput.textContent
-    );
+  handleUpdateExampleText = (index, text) => {
+    this.props.updateComment(index, 'example', text);
   };
 
-  handleUpdateImpactText = index => {
-    this.props.updateComment(
-      index,
-      this.impactInput.getAttribute('name'),
-      this.impactInput.textContent
-    );
+  handleUpdateImpactText = (index, text) => {
+    this.props.updateComment(index, 'impact', text);
   };
 
   render() {
@@ -93,48 +82,30 @@ class EntryComments extends Component {
         <span className="selectable" onClick={this.toggleCompetencyModal}>
           <strong>{` ${comment.competency} `}</strong>
         </span>
-        I{' '}
-        <span
-          className="editable"
-          name="behavioralIndicator"
-          ref={behavioralInput => (this.behavioralInput = behavioralInput)}
-          contentEditable
-          suppressContentEditableWarning
-          onFocus={this.handleFocus}
-          onBlur={() => {
-            this.handleUpdateIndicatorText(index);
+        I
+        <InlineInput
+          updateFn={text => {
+            this.props.updateComment(index, 'behavioralIndicator', text);
           }}
         >
-          {comment.behavioralIndicator}
-        </span>{' '}
-        by{' '}
-        <span
-          className="editable"
-          name="example"
-          ref={exampleInput => (this.exampleInput = exampleInput)}
-          contentEditable
-          suppressContentEditableWarning
-          onFocus={this.handleFocus}
-          onBlur={() => {
-            this.handleUpdateExampleText(index);
+          {` ${comment.behavioralIndicator} `}
+        </InlineInput>
+        by
+        <InlineInput
+          updateFn={text => {
+            this.props.updateComment(index, 'example', text);
           }}
         >
-          {comment.example}
-        </span>{' '}
-        with the impact that{' '}
-        <span
-          className="editable"
-          name="impact"
-          ref={impactInput => (this.impactInput = impactInput)}
-          contentEditable
-          suppressContentEditableWarning
-          onFocus={this.handleFocus}
-          onBlur={() => {
-            this.handleUpdateImpactText(index);
+          {` ${comment.example} `}
+        </InlineInput>
+        with the impact that
+        <InlineInput
+          updateFn={text => {
+            this.props.updateComment(index, 'impact', text);
           }}
         >
-          {comment.impact}
-        </span>
+          {` ${comment.impact} `}
+        </InlineInput>
       </div>
     ));
 
