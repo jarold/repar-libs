@@ -19,7 +19,6 @@ const EntryList = props => {
         <Entry
           key={entry.id}
           entry={entry}
-          onUpdateCount={compName => props.handleUpdateCount(compName)}
           onDeleteEntry={() => props.handleDeleteEntry(entry.id)}
           onTypeChange={entType => props.handleTypeChange(entType, entry.id)}
           onDescriptionChange={desc =>
@@ -54,9 +53,6 @@ const mapDispatchToProps = dispatch => {
     },
     handleDescrptionChange: (desc, id) => {
       dispatch(updateEntryDescription(desc, id));
-    },
-    handleUpdateCount: compName => {
-      dispatch(updateCount(compName));
     },
     handleAddComment: (compName, idx) => {
       dispatch(addComment(compName, idx));

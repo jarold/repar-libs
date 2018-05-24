@@ -15,7 +15,6 @@ class Entry extends Component {
 
   addComment(event) {
     this.props.onAddComment(event.target.innerHTML);
-    this.props.onUpdateCount(event.target.innerHTML);
   }
 
   handleTypeChange(event) {

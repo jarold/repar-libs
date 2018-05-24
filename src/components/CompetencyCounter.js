@@ -2,8 +2,30 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const CompetencyCounter = props => {
-  const competencies = props.competencies;
-  const keys = Object.keys(competencies);
+  let competencyCount = {
+    Communication: 0,
+    'Decision Making': 0,
+    Leadership: 0,
+    'Principles of Community': 0,
+    'Problem Solving': 0,
+    'Quality Improvement': 0,
+    'Service Focus': 0,
+    'Stewardship and Managing Resources': 0,
+    'Strategic Planning': 0,
+    Teamwork: 0,
+    'Managing People': 0
+  };
+
+  if (props.entries) {
+    // loop through entries, each entries have comments, each comment has a competency to count
+    props.entries.forEach(entry => {
+      entry.comments.forEach(comment => {
+        competencyCount[comment.competency] += 1;
+      });
+    });
+  }
+
+  const keys = Object.keys(competencyCount);
 
   return (
     <div className="fixed">
@@ -15,9 +37,11 @@ const CompetencyCounter = props => {
             <div className="tags has-addons">
               <span className="tag">{key}</span>
               <span
-                className={'tag ' + (competencies[key] > 1 ? 'is-success' : '')}
+                className={
+                  'tag ' + (competencyCount[key] > 1 ? 'is-success' : '')
+                }
               >
-                {competencies[key]}
+                {competencyCount[key]}
               </span>
             </div>
           </li>
@@ -28,7 +52,9 @@ const CompetencyCounter = props => {
 };
 
 const mapStateToProps = state => {
-  return { competencies: state.counter };
+  return {
+    entries: state.entries
+  };
 };
 
 export default connect(mapStateToProps)(CompetencyCounter);
